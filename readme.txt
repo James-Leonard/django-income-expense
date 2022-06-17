@@ -1,1 +1,1 @@
-this project is open sources
+this project is open source
