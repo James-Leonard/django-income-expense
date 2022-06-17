@@ -1,15 +1,76 @@
 {% extends 'base_auth.html' %}
+{% load static %}
+
 
 {% block content %}
 
-<div class="card">
+<!---->
 
-<div class="card-body">
+<div class="row">
+    <div class="col-md-4"></div>
+    <div class="col-md-4">
+        <div class="card mt-5">
+            <div class="card-body">
+                <div class="auth-wrapper mx-auto">
+                    <h2 class="auth-heading text-center mb-4">Register for a free account</h2>
+                    
+                    <div class="auth-form-container text-start mx-auto">
+                        <form class="auth-form signup-form" action="{% url 'register' %}" method="POST">         
+                            {% csrf_token %}
 
-<h1>Login</h1>
-
+                            {% include 'partials/_messages.html' %}
+                            <div class="email mb-3">
+                                <label class="sr-only" for="signup-email">Your Username</label>
+                                <input 
+                                type="text" 
+                                name="username" 
+                                placeholder="username"
+                                id="usernameField" 
+                                class="form-control form-control-sm signup-email" 
+                                value="{{fieldValues.username}}"
+                                />
+                            </div><!--//form-group-->
+                            <div class="invalid_feedback invalid-feedback" style="display:none">
+                            </div>
+                            <p class="text-sm text-success usernameSuccessOutput"></p>
+                            <div class="email mb-3">
+                                <label class="sr-only" for="signup-email">Your Email</label>
+                                <input 
+                                    type="email" 
+                                    name="email"  
+                                    placeholder="Email"
+                                    class="form-control form-control-sm signup-email" 
+                                    id="emailField"
+                                    value="{{fieldValues.email}}"
+                                />
+                            </div><!--//form-group-->
+                            <div class="emailFeedBackArea invalid-feedback" style="display:none">
+                            </div>
+                            <p class="text-sm text-success emailSuccessOutput"></p>
+                            <div class="password mb-3">
+                                <label class="sr-only" for="signup-password">Password</label>
+                                <input 
+                                type="password" 
+                                name="password"  
+                                placeholder="Create a password"
+                                class="form-control form-control-sm signup-password"  
+                                id="passwordField"
+                                />
+                                <small class="float-right py-3 showPasswordToggle">SHOW</small>
+                            </div><!--//form-group-->
+                            <div class="legal-note mb-4 text-center">By signing up, you agree to our <a href="#" class="theme-link">terms of service</a> and <a href="#" class="theme-link">privacy policy</a>.</div>
+                            <div class="text-center">
+                                <input type="submit" value="Create an account" class="btn btn-gradient btn-submit btn-primary mx-auto submit-btn">
+                            </div>
+                        </form><!--//auth-form-->
+                    </div><!--//auth-form-container-->                    
+                </div><!--//auth-wrapper-->     
+            </div> 
+        </div>
+    </div>
+    <div class="col-md-4"></div>
 </div>
 
-</div>
+<script src="{% static 'js/register.js' %}"></script>
 
 {% endblock content %}
